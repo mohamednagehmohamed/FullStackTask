@@ -1,0 +1,82 @@
+﻿@page "/"
+@using TaskApplication.Shared.Models;
+
+
+
+<PageTitle>Tasks</PageTitle>
+<div>
+    <div class="d-flex align-center justify-space-between mt-0">
+        <MudText Align="Align.Start" Typo="Typo.h5">Tasks</MudText>
+    </div>
+
+
+    <div id="TableToPrint">
+
+
+        <MudTable Items="@taskModels"
+                  T="TaskModel"
+                  Dense="true"
+                  Hover="true"
+                  Bordered="true"
+                  Striped="true"
+                  Breakpoint="Breakpoint.MdAndDown"
+                  FixedHeader
+                  Height="70vh"
+                  Style="margin-bottom:20px"
+                  >
+
+
+            <HeaderContent>
+                <MudTh>Task Name</MudTh>
+                <MudTh>Description</MudTh>
+                <MudTh>Is Completed</MudTh>
+
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>@context.taskName</MudTd>
+                <MudTd>@context.description</MudTd>
+                <MudTd>
+                    <MudCheckBox ReadOnly="context.isCompleted" @onclick="()=>UpdateTask(context,context.taskId)" @bind-Checked="@context.isCompleted" Dense="true" Color="Color.Success"></MudCheckBox>
+                    </MudTd>
+                
+
+               
+            </RowTemplate>
+         
+        </MudTable>
+    </div>
+</div>
+
+
+<style>
+    /*  #Active{
+                                        background:#F5F5F5;
+                                    }*/
+    .mud-table-striped .mud-table-container .mud-table-root .mud-table-body .mud-table-row:nth-of-type(even) {
+        background-color: #F1F1F1;
+    }
+
+        .mud-table-striped .mud-table-container .mud-table-root .mud-table-body .mud-table-row:nth-of-type(even) td {
+            color: #000
+        }
+
+        .mud-table-striped .mud-table-container .mud-table-root .mud-table-body .mud-table-row:nth-of-type(even):hover {
+            background-color: #F1F1F1;
+        }
+
+    .mud-table-root .mud-table-body:last-child .mud-table-row:last-child .mud-table-cell {
+        border-bottom: 1px solid #ffffff1e;
+    }
+
+    .mud-table-cell {
+        border: 1px solid #ffffff1e;
+    }
+
+    #info_button {
+        background: #17a2b8;
+    }
+
+        #info_button span.mud-button-label {
+            color: #fff;
+        }
+</style>
